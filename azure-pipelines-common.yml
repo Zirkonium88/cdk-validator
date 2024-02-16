@@ -1,0 +1,25 @@
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+    displayName: 'Install Node.js'
+- script: |
+    npm install -g aws-cdk@2.118.0
+    cd $(Build.Repository.Name)
+    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
+    ls -a
+    pwd
+  displayName: 'Installing CDK and relevant Python packages'
+
+
+- task: AWSShellScript@1
+  inputs:
+    awsCredentials: ${{ parameters.ServiceConnection }}
+    regionName: ${{ parameters.AwsRegion }}
+    scriptType: 'inline'
+    inlineScript: |
+      env
+  displayName: 'Log enviornment varibales'
+  env:
+    AWS_ACCCOUNT_ID: $(account_id)

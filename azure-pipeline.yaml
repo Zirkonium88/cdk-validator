@@ -1,0 +1,35 @@
+trigger:
+- none
+
+parameters:
+- name: ServiceConnection
+  displayName: Service Connection
+  type: string
+  default: developing-aws-service-endpoint
+- name: AwsRegion
+  displayName: AWS Region
+  type: string
+  default: eu-central-1
+
+pool:
+  name: BuildAgents
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: RunningCDKSynthesize
+  displayName: CIStage-Creation
+  jobs:
+  - job: IaCCreationValidation
+    steps:
+    - template: azure-pipelines-common.yml
+    - task: AWSShellScript@1
+      inputs:
+        awsCredentials: ${{ parameters.ServiceConnection }}
+        regionName: ${{ parameters.AwsRegion }}
+        scriptType: 'inline'
+        inlineScript: |
+          cd $(Build.Repository.Name)
+          cdk synth
+          python3 src/pull_requests/comment.py
+      displayName: 'Validating AWS CDK output and Creating Pull Request comment'
+    

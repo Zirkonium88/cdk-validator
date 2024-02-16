@@ -1,0 +1,271 @@
+{
+  "title": "Validation Report",
+  "pluginReports": [
+    {
+      "summary": {
+        "pluginName": "cdk-validator-cfnguard",
+        "status": "failure"
+      },
+      "violations": [
+        {
+          "ruleName": "s3_bucket_logging_enabled_check",
+          "description": "[CT.S3.PR.2]: Require an Amazon S3 bucket to have server access logging configured",
+          "fix": "[FIX]: Set a 'LoggingConfiguration' on the S3 Bucket and optionally set 'DestinationBucketName' to an S3 bucket configured to receive S3 Access Logs.",
+          "ruleMetadata": {
+            "DocumentationUrl": "https://github.com/cdklabs/cdk-validator-cfnguard#bundled-control-tower-rules"
+          },
+          "violatingResources": [
+            {
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ],
+          "violatingConstructs": [
+            {
+              "constructStack": {
+                "id": "CdkValidatorStack",
+                "path": "CdkValidatorStack",
+                "child": {
+                  "id": "MyBucket",
+                  "path": "CdkValidatorStack/MyBucket",
+                  "child": {
+                    "id": "Resource",
+                    "path": "CdkValidatorStack/MyBucket/Resource",
+                    "construct": "aws-cdk-lib.aws_s3.CfnBucket",
+                    "libraryVersion": "2.118.0",
+                    "location": "Run with '--debug' to include location info"
+                  },
+                  "construct": "aws-cdk-lib.aws_s3.Bucket",
+                  "libraryVersion": "2.118.0",
+                  "location": "Run with '--debug' to include location info"
+                },
+                "construct": "aws-cdk-lib.Stack",
+                "libraryVersion": "2.118.0",
+                "location": "Run with '--debug' to include location info"
+              },
+              "constructPath": "CdkValidatorStack/MyBucket/Resource",
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ]
+        },
+        {
+          "ruleName": "s3_version_lifecycle_policy_check",
+          "description": "[CT.S3.PR.3]: Require an Amazon S3 buckets to have versioning configured and a lifecycle policy",
+          "fix": "[FIX]: Configure versioning-enabled buckets with at least one active lifecycle rule.",
+          "ruleMetadata": {
+            "DocumentationUrl": "https://github.com/cdklabs/cdk-validator-cfnguard#bundled-control-tower-rules"
+          },
+          "violatingResources": [
+            {
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ],
+          "violatingConstructs": [
+            {
+              "constructStack": {
+                "id": "CdkValidatorStack",
+                "path": "CdkValidatorStack",
+                "child": {
+                  "id": "MyBucket",
+                  "path": "CdkValidatorStack/MyBucket",
+                  "child": {
+                    "id": "Resource",
+                    "path": "CdkValidatorStack/MyBucket/Resource",
+                    "construct": "aws-cdk-lib.aws_s3.CfnBucket",
+                    "libraryVersion": "2.118.0",
+                    "location": "Run with '--debug' to include location info"
+                  },
+                  "construct": "aws-cdk-lib.aws_s3.Bucket",
+                  "libraryVersion": "2.118.0",
+                  "location": "Run with '--debug' to include location info"
+                },
+                "construct": "aws-cdk-lib.Stack",
+                "libraryVersion": "2.118.0",
+                "location": "Run with '--debug' to include location info"
+              },
+              "constructPath": "CdkValidatorStack/MyBucket/Resource",
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ]
+        },
+        {
+          "ruleName": "s3_event_notifications_enabled_check",
+          "description": "[CT.S3.PR.4]: Require an Amazon S3 bucket to have event notifications configured",
+          "fix": "[FIX]: Set a 'NotificationConfiguration' parameter on your bucket with one of 'EventBridgeConfiguration', 'LambdaConfigurations', 'QueueConfigurations' or 'TopicConfigurations.'",
+          "ruleMetadata": {
+            "DocumentationUrl": "https://github.com/cdklabs/cdk-validator-cfnguard#bundled-control-tower-rules"
+          },
+          "violatingResources": [
+            {
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ],
+          "violatingConstructs": [
+            {
+              "constructStack": {
+                "id": "CdkValidatorStack",
+                "path": "CdkValidatorStack",
+                "child": {
+                  "id": "MyBucket",
+                  "path": "CdkValidatorStack/MyBucket",
+                  "child": {
+                    "id": "Resource",
+                    "path": "CdkValidatorStack/MyBucket/Resource",
+                    "construct": "aws-cdk-lib.aws_s3.CfnBucket",
+                    "libraryVersion": "2.118.0",
+                    "location": "Run with '--debug' to include location info"
+                  },
+                  "construct": "aws-cdk-lib.aws_s3.Bucket",
+                  "libraryVersion": "2.118.0",
+                  "location": "Run with '--debug' to include location info"
+                },
+                "construct": "aws-cdk-lib.Stack",
+                "libraryVersion": "2.118.0",
+                "location": "Run with '--debug' to include location info"
+              },
+              "constructPath": "CdkValidatorStack/MyBucket/Resource",
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ]
+        },
+        {
+          "ruleName": "s3_lifecycle_policy_check",
+          "description": "[CT.S3.PR.6]: Require an Amazon S3 bucket to have lifecycle policies configured",
+          "fix": "[FIX]: Configure at least one active lifecycle rule in 'LifecycleConfiguration.Rules' by setting 'Status' on a rule to 'Enabled'.",
+          "ruleMetadata": {
+            "DocumentationUrl": "https://github.com/cdklabs/cdk-validator-cfnguard#bundled-control-tower-rules"
+          },
+          "violatingResources": [
+            {
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ],
+          "violatingConstructs": [
+            {
+              "constructStack": {
+                "id": "CdkValidatorStack",
+                "path": "CdkValidatorStack",
+                "child": {
+                  "id": "MyBucket",
+                  "path": "CdkValidatorStack/MyBucket",
+                  "child": {
+                    "id": "Resource",
+                    "path": "CdkValidatorStack/MyBucket/Resource",
+                    "construct": "aws-cdk-lib.aws_s3.CfnBucket",
+                    "libraryVersion": "2.118.0",
+                    "location": "Run with '--debug' to include location info"
+                  },
+                  "construct": "aws-cdk-lib.aws_s3.Bucket",
+                  "libraryVersion": "2.118.0",
+                  "location": "Run with '--debug' to include location info"
+                },
+                "construct": "aws-cdk-lib.Stack",
+                "libraryVersion": "2.118.0",
+                "location": "Run with '--debug' to include location info"
+              },
+              "constructPath": "CdkValidatorStack/MyBucket/Resource",
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ]
+        },
+        {
+          "ruleName": "s3_bucket_object_lock_enabled_check",
+          "description": "[CT.S3.PR.9]: Require that an Amazon S3 bucket has S3 Object Lock activated",
+          "fix": "[FIX]: Set 'ObjectLockEnabled' to 'true'.",
+          "ruleMetadata": {
+            "DocumentationUrl": "https://github.com/cdklabs/cdk-validator-cfnguard#bundled-control-tower-rules"
+          },
+          "violatingResources": [
+            {
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ],
+          "violatingConstructs": [
+            {
+              "constructStack": {
+                "id": "CdkValidatorStack",
+                "path": "CdkValidatorStack",
+                "child": {
+                  "id": "MyBucket",
+                  "path": "CdkValidatorStack/MyBucket",
+                  "child": {
+                    "id": "Resource",
+                    "path": "CdkValidatorStack/MyBucket/Resource",
+                    "construct": "aws-cdk-lib.aws_s3.CfnBucket",
+                    "libraryVersion": "2.118.0",
+                    "location": "Run with '--debug' to include location info"
+                  },
+                  "construct": "aws-cdk-lib.aws_s3.Bucket",
+                  "libraryVersion": "2.118.0",
+                  "location": "Run with '--debug' to include location info"
+                },
+                "construct": "aws-cdk-lib.Stack",
+                "libraryVersion": "2.118.0",
+                "location": "Run with '--debug' to include location info"
+              },
+              "constructPath": "CdkValidatorStack/MyBucket/Resource",
+              "locations": [
+                "/Resources/MyBucketF68F3FF0/Properties",
+                "/Resources/MyBucketF68F3FF0/Properties"
+              ],
+              "resourceLogicalId": "MyBucketF68F3FF0",
+              "templatePath": "CdkValidatorStack.template.json"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

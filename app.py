@@ -1,28 +1,39 @@
 #!/usr/bin/env python3
-import os
-
-import aws_cdk as cdk
-
+from aws_cdk import App, Environment
 from cdk_validator.cdk_validator_stack import CdkValidatorStack
+from cdklabs import cdk_validator_cfnguard as cfn_guard
 
 
-app = cdk.App()
-CdkValidatorStack(app, "CdkValidatorStack",
-    # If you don't specify 'env', this stack will be environment-agnostic.
-    # Account/Region-dependent features and context lookups will not work,
-    # but a single synthesized template can be deployed anywhere.
+class CdkSampleRepo(App):
+    """Create the CDK App for network management.
 
-    # Uncomment the next line to specialize this stack for the AWS Account
-    # and Region that are implied by the current CLI configuration.
+    Args:
+        App (aws_cdk.App): CDK App class
+    """
+    def __init__(self, *args, **kwargs):
+        """Initialise this ensemble class."""
+        super().__init__(*args, **kwargs)
+        """Create the actual CloudFormation stack tree."""
+        self.default_env = Environment(
+            account="12345678910",
+            region="eu-central-1",
+        )
+        self.list_of_stacks = []
 
-    #env=cdk.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'), region=os.getenv('CDK_DEFAULT_REGION')),
+    def create_cfn_stacks(self):
+        """Create CFN stacks."""
+        zpa_stack = CdkValidatorStack(
+            self,
+            construct_id="CdkValidatorStack",
+            stack_name=f"my-bucket-sample-stack",
+        )
+        self.list_of_stacks.append(zpa_stack)
 
-    # Uncomment the next line if you know exactly what Account and Region you
-    # want to deploy the stack to. */
-
-    #env=cdk.Environment(account='123456789012', region='us-east-1'),
-
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
+if __name__ == "__main__":
+    app = CdkSampleRepo(
+        policy_validation_beta1=[
+            cfn_guard.CfnGuardValidator(control_tower_rules_enabled=True)
+        ]
     )
-
-app.synth()
+    app.create_cfn_stacks()
+    app.synth()
