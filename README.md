@@ -244,7 +244,7 @@ The result in Azure DevOps looks like this:
 
 ![Result](./img/report.PNG)
 
-We still have chance for improvments as you can see.
+We still have chance for improvements as you can see.
 
 ## Summary
 
