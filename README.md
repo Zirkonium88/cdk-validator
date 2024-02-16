@@ -7,7 +7,7 @@ The `cdk-validator-cfnguard` extension can be used to prevent future findings wi
 
 ## Shifting Your Cloud Security to the Left
 
-AWS services are subject to constant change. This applies not only to their properties, but also to the models in which they should be used. For the AWS customer, this results in the problem of keeping up or making good decisions not to do so. Infrastructure that has already been deployed can be examined using various tools. Prowler is one of them, but AWS also offers several for this purpose. The most strategically important is certainly the Security Hub service. Various findings from many other services are aggregated here, which can affect both the infrastructure (e.g. AWS Config) and the software (e.g. AWS Inspector).
+AWS services are subject to constant change. This applies not only to their properties, but also to the models in which they should be used. For the AWS customer, this results in the problem of keeping up or making good decisions not to do so. Infrastructure that has already been deployed can be examined using various tools. Prowler is one of them, but AWS also offers several services for this purpose. The most strategically important is certainly the Security Hub service. Various findings from many other services are aggregated here, which can affect both the infrastructure (e.g. AWS Config) and the software (e.g. AWS Inspector).
 
 If you now use these services to fix the infrastructure findings, a drift occurs that is not always easy to fix. It is better to check for possible problems before the actual deployment. This approach is called “Shift-Left”. This can be done with the package [cdk-validator-cfnguard](https://github.com/cdklabs/cdk-validator-cfnguard). It's based on the [CloudFormation Guard package](https://github.com/aws-cloudformation/cloudformation-guard).
 
@@ -15,7 +15,7 @@ After adding the packet, `cdk synth` command checks the current deployment again
 
 ## Implementation in your CDK-App
 
-The example of this app deploys an S3 bucket. This one should be safe. These include encryption with KMS, a bucket policy that requires TLS and block public. Versioning should be enabled, to create some kind of deletion protection.
+The example of this app deploys an S3 bucket. This one should be safe. We will use encryption with KMS, a bucket policy that requires TLS and block public. Versioning should be enabled, to create some kind of deletion protection.
 
 ```Python
 # ./cdk-validator/cdk_validator/cdk_validator_stack.py
@@ -56,7 +56,7 @@ class CdkValidatorStack(Stack):
 
 ### Installation in Your CDK App
 
-For installation we need to add the following packages.
+For installation, we need to add the following packages to our Python project virtual environment.
 
 ```txt
 # requirements.txt
@@ -133,7 +133,7 @@ Finally, the `cdk.json` need to be extended by this key-value pair to store the 
 
 ```
 
-From this moment on, the evaluation of the deployment against the ``Control Tower rules` is started with every `cdk synth`.
+From this moment on, the evaluation of the deployment against the `Control Tower rules` is started with every `cdk synth` CLI command.
 
 ### Pull Request Reporting: Integrating Azure DevOps API
 
@@ -208,7 +208,7 @@ def main():
     msg.add(comment=df.to_markdown())
 ```
 
-All the information, under violations is really interesting (report_dict["pluginReports"][0]["violations"]). Following this part, the dict is also very structured and can easily be read in as `pandas.Dataframe()`.
+Information under key **violations** is really interesting (report_dict["pluginReports"][0]["violations"]). Following this part, the dict is very structured and can easily be read in as `pandas.Dataframe()`.
 
 Sometimes our deployment is error-free. Its' lucky situation, but the script then needs to catch an IndexError on `df.drop(["violatingConstructs", "ruleMetadata"], axis=1)`. In order to get the clean Markdown table, we set a value ourselves or take the findings via `msg.add(comment=df.to_markdown())` and send the content to the API.
 
@@ -243,6 +243,8 @@ stages:
 The result in Azure DevOps looks like this:
 
 ![Result](./img/report.PNG)
+
+We still have chance for improvments as you can see.
 
 ## Summary
 
